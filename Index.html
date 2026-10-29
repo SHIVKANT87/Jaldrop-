@@ -1,0 +1,138 @@
+
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0877d1">
+  <meta name="description" content="JalDrop से पानी की बोतल और 20 लीटर जार की होम डिलीवरी ऑर्डर करें।">
+  <title>JalDrop — पानी की होम डिलीवरी</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="JalDrop Home">
+      <span class="logo">💧</span>
+      <span>JalDrop<small>पानी अब आपके दरवाज़े पर</small></span>
+    </a>
+    <button class="cart-button" onclick="toggleCart()">
+      🛒 कार्ट <span id="cart-count">0</span>
+    </button>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <span class="eyebrow">💧 FRESH WATER. FAST DELIVERY.</span>
+        <h1>शुद्ध पानी,<br><span>सीधे आपके घर।</span></h1>
+        <p>पानी ऑर्डर करें आसानी से। अपने क्षेत्र के सप्लायर से घर तक डिलीवरी पाएँ।</p>
+        <a href="#products" class="primary-link">पानी ऑर्डर करें ↓</a>
+        <div class="trust">
+          <span>✓ आसान ऑर्डर</span>
+          <span>✓ घर तक डिलीवरी</span>
+        </div>
+      </div>
+      <div class="hero-art" aria-label="पानी की बोतल">
+        <div class="water-circle">💧</div>
+        <div class="water-tag">हर दिन ताज़गी</div>
+      </div>
+    </section>
+
+    <section class="delivery-strip">
+      <span>📍</span>
+      <div>
+        <strong>आपके क्षेत्र में पानी की डिलीवरी</strong>
+        <p>अपना पता भरें और ऑर्डर भेजें।</p>
+      </div>
+    </section>
+
+    <section id="products" class="section">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">OUR PRODUCTS</span>
+          <h2>अपना पानी चुनें</h2>
+          <p>अपनी जरूरत के अनुसार मात्रा चुनें।</p>
+        </div>
+      </div>
+      <div id="product-list" class="product-grid"></div>
+    </section>
+
+    <section id="checkout" class="section checkout-section">
+      <div class="checkout-info">
+        <span class="eyebrow">QUICK CHECKOUT</span>
+        <h2>ऑर्डर की जानकारी</h2>
+        <p>अपना नाम, मोबाइल नंबर और डिलीवरी का पता भरें।</p>
+        <div class="benefit">🚚 <span>डिलीवरी का समय सप्लायर से कन्फर्म होगा।</span></div>
+        <div class="benefit">💵 <span>फिलहाल भुगतान डिलीवरी पर होगा।</span></div>
+      </div>
+
+      <form id="order-form" class="order-form">
+        <label for="customer-name">पूरा नाम</label>
+        <input id="customer-name" name="name" required maxlength="80"
+               autocomplete="name" placeholder="अपना नाम लिखें">
+
+        <label for="customer-phone">मोबाइल नंबर</label>
+        <input id="customer-phone" name="phone" required
+               inputmode="numeric" pattern="[6-9][0-9]{9}"
+               maxlength="10" autocomplete="tel"
+               placeholder="10 अंकों का मोबाइल नंबर">
+
+        <label for="customer-address">डिलीवरी का पूरा पता</label>
+        <textarea id="customer-address" name="address" required
+                  maxlength="500" autocomplete="street-address"
+                  placeholder="मकान नंबर, कॉलोनी, शहर"></textarea>
+
+        <label for="delivery-time">डिलीवरी का पसंदीदा समय</label>
+        <select id="delivery-time" name="time">
+          <option>जल्द से जल्द</option>
+          <option>सुबह 8 बजे – दोपहर 12 बजे</option>
+          <option>दोपहर 12 बजे – शाम 4 बजे</option>
+          <option>शाम 4 बजे – रात 8 बजे</option>
+        </select>
+
+        <div class="bill">
+          <div><span>प्रोडक्ट कुल</span><strong id="subtotal">₹0</strong></div>
+          <div><span>डिलीवरी शुल्क</span><strong id="delivery-fee">₹0</strong></div>
+          <div class="bill-total"><span>कुल राशि</span><strong id="total">₹0</strong></div>
+        </div>
+
+        <p class="small-note">डिलीवरी शुल्क डेमो राशि है। वास्तविक शुल्क सप्लायर से तय करें।</p>
+        <button class="primary-button" type="submit">ऑर्डर तैयार करें</button>
+        <p id="form-message" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+
+    <section id="demo-orders" class="section">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">DEMO ONLY</span>
+          <h2>इस डिवाइस के डेमो ऑर्डर</h2>
+          <p>ये ऑर्डर केवल इसी ब्राउज़र में सेव होते हैं।</p>
+        </div>
+      </div>
+      <div id="order-list" class="order-list"></div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="brand footer-brand" href="#">💧 JalDrop</a>
+    <p>आपके घर तक पानी की सुविधा।</p>
+    <p class="small-note">डेमो वेबसाइट — वास्तविक भुगतान या सर्वर-आधारित ऑर्डर सेवा अभी सक्रिय नहीं है।</p>
+  </footer>
+
+  <div id="cart-panel" class="cart-panel" hidden>
+    <div class="cart-header">
+      <h2>आपका कार्ट</h2>
+      <button type="button" class="close-button" onclick="toggleCart()">✕</button>
+    </div>
+    <div id="cart-items"></div>
+    <div class="cart-footer">
+      <strong>कुल: <span id="cart-total">₹0</span></strong>
+      <button class="primary-button" onclick="goToCheckout()">ऑर्डर करें</button>
+    </div>
+  </div>
+  <div id="cart-backdrop" class="backdrop" hidden onclick="toggleCart()"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
